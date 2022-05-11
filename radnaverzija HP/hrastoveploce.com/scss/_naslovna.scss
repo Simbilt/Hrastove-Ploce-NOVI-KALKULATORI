@@ -1,0 +1,100 @@
+//GLAVNI DEO
+main {
+    .fotografija {
+        width: 100%;
+        text-align: center;
+    }
+    .centriranje {
+        margin: 0 auto;
+    }
+    .naslovnafotografija {
+        padding: 0;
+        border-radius: 0px;
+    }
+    .uvod {
+        border: solid 1px $svetlosivaboja;
+        margin: 0 auto;
+        padding: 20px;
+        p {
+            margin: auto;
+        }
+    }
+    .tekstUvoda {
+        margin: auto auto !important;
+    }
+    #fotografije {
+        margin-top: 30px;
+        p {
+            text-align: center;
+        }
+        .opisi {
+        padding: 40px 20px;
+        }
+    }
+    
+    .destinacije {
+        margin: 0px;
+        h1 {
+            padding: 0; 
+            text-align: center;
+            margin: 30px auto;
+        }
+        p {
+            padding: 10px; 
+            text-align: justify;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin: 30px auto 20px;
+            padding: 0px;
+        }
+        img {
+            border-radius: 6%;
+            margin: 15px auto;
+            padding: 0px 5px;
+        }
+        .kartica {
+            text-align: center;
+            margin: 0 auto; 
+        }
+    }
+    iframe {
+        margin: 30px auto;
+    }
+    #kontaktpodaci {
+        text-align: center;
+        font-weight: bold;
+    }
+    .kalkulator {
+        padding: 20px;
+        border: solid 1px $svetlosivaboja;
+        h3 {
+            color: #01b2bc;
+            font-weight: bold;
+        }
+    }
+    .inputobrada {
+        padding: 0px;
+        margin: 5px auto;
+        border: solid #dddddd 1px;
+    }
+    .cena {
+        margin: 0 auto;
+    }
+    .invalid {
+        border: 1px solid pink;
+    }
+
+    @media all and (max-width: 630px) {
+        #fotografije {
+            margin-top: 30px;
+            p {
+                text-align: center;
+            }
+            .opisi {
+            padding: 0px 20px;
+            }
+        }
+    }
+}
