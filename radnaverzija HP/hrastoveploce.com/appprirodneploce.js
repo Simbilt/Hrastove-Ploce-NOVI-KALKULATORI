@@ -1,66 +1,32 @@
-
-console.log("script loaded")
+console.log("script loaded");
 
 const ppCalc = document.querySelector(".pp_calc");
 const ppSumbitButton = document.querySelector(".pp_submit");
 console.log(ppSumbitButton);
 
 const getPricePP = async () => {
-    if(!ppCalc) return;
-    const resPP = await fetch("../pricesPP.JSON");
-    const pricesPP = await resPP.json();
-    const widthPP = ppCalc.querySelector(".widthPP");
-    const lengthPP = ppCalc.querySelector(".lengthPP");
-    const thicknesPP = ppCalc.querySelector(".thicknessPP").value;
-    const classSelectPP = ppCalc.querySelector(".classSelectPP").value;
-    const spreadSelectPP = ppCalc.querySelector(".spreadSelectPP");
-    let newStaticPricePP = pricesPP[thicknesPP][classSelectPP];
-    if(!widthPP && !lengthPP && !classSelectPP && !spreadSelectPP) return;
-    newStaticPricePP = Number(newStaticPricePP);
-    let displayedPricePP = (((Number(widthPP.value) * Number(lengthPP.value)) / 100) + newStaticPricePP / 100);
-    displayedPricePP = (Math.round((displayedPricePP + newStaticPricePP) * 100) / 100).toFixed(1);
-    const priceSpan = ppCalc.querySelector(".cenaPP");
-    if(!priceSpan) return;
-    priceSpan.innerHTML = `${displayedPricePP + Number(spreadSelectPP.value)}€`
+  if (!ppCalc) return;
+  const resPP = await fetch("../pricesPP.JSON");
+  const pricesPP = await resPP.json();
+  const widthPP = ppCalc.querySelector(".widthPP");
+  const lengthPP = ppCalc.querySelector(".lengthPP");
+  const thicknesPP = ppCalc.querySelector(".thicknessPP").value;
+  const classSelectPP = ppCalc.querySelector(".classSelectPP").value;
+  const spreadSelectPP = ppCalc.querySelector(".spreadSelectPP");
+  let newStaticPricePP = pricesPP[thicknesPP][classSelectPP];
+  if (!widthPP && !lengthPP && !classSelectPP && !spreadSelectPP) return;
+  newStaticPricePP = Number(newStaticPricePP);
+  let displayedPricePP =
+    Number(widthPP.value / 100) *
+    Number(lengthPP.value / 100) *
+    newStaticPricePP;
+  console.log(displayedPricePP);
+  displayedPricePP = Math.round(displayedPricePP * 100) / 100;
+  const priceSpan = ppCalc.querySelector(".cenaPP");
+  if (!priceSpan) return;
+  priceSpan.innerHTML = `${displayedPricePP + Number(spreadSelectPP.value)}€`;
 };
 if (ppSumbitButton) ppSumbitButton.addEventListener("click", getPricePP);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*{
     const duzina = document.querySelector(".duzinapp");

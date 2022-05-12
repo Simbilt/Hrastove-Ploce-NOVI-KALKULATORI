@@ -1,46 +1,31 @@
-console.log("script loaded")
+console.log("script loaded");
 
 const hpCalc = document.querySelector(".hp_calc");
 const hpSumbitButton = document.querySelector(".hp_submit");
 console.log(hpSumbitButton);
 let newStaticPriceHP = 0;
 const getPriceHP = async () => {
-    if(!hpCalc) return;
-    const resHP = await fetch("../pricesHP.JSON");
-    const pricesHP = await resHP.json();
-    const widthHP = hpCalc.querySelector(".widthInput");
-    const lengthHP = hpCalc.querySelector(".lengthInput");
-    const thicknesHP = hpCalc.querySelector(".thicknessHP").value;
-    const classSelectHP = hpCalc.querySelector(".classSelectHp").value;
-    const spreadSelectHP = hpCalc.querySelector(".spreadSelectHP");
-    let newStaticPriceHP = pricesHP[thicknesHP][classSelectHP];
-    if(!widthHP && !lengthHP && !classSelectHP && !spreadSelectHP) return;
-    newStaticPriceHP = Number(newStaticPriceHP);
-    let displayedPriceHP = ((Number(widthHP.value) * Number(lengthHP.value)) / 100);
-    displayedPriceHP = (Math.round((displayedPriceHP + newStaticPriceHP) * 100)/100).toFixed(1);
-    const priceSpan = hpCalc.querySelector(".cenaHP");
-    if(!priceSpan) return;
-    priceSpan.innerHTML = `${displayedPriceHP + Number(spreadSelectHP.value)}€`
+  if (!hpCalc) return;
+  const resHP = await fetch("../pricesHP.JSON");
+  const pricesHP = await resHP.json();
+  const widthHP = hpCalc.querySelector(".widthInput");
+  const lengthHP = hpCalc.querySelector(".lengthInput");
+  const thicknesHP = hpCalc.querySelector(".thicknessHP").value;
+  const classSelectHP = hpCalc.querySelector(".classSelectHp").value;
+  const spreadSelectHP = hpCalc.querySelector(".spreadSelectHP");
+  let newStaticPriceHP = pricesHP[thicknesHP][classSelectHP];
+  if (!widthHP && !lengthHP && !classSelectHP && !spreadSelectHP) return;
+  newStaticPriceHP = Number(newStaticPriceHP);
+  let displayedPriceHP =
+    Number(widthHP.value / 100) *
+    Number(lengthHP.value / 100) *
+    newStaticPriceHP;
+  displayedPriceHP = Math.round(displayedPriceHP * 100) / 100;
+  const priceSpan = hpCalc.querySelector(".cenaHP");
+  if (!priceSpan) return;
+  priceSpan.innerHTML = `${displayedPriceHP + Number(spreadSelectHP.value)}€`;
 };
 if (hpSumbitButton) hpSumbitButton.addEventListener("click", getPriceHP);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*{
 

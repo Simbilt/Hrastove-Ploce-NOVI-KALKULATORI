@@ -15,26 +15,19 @@ const getPrice = async () => {
   let newStaticPrice = prices[thickness][classSelect];
   if (!diameter && !thickness && !classSelect && !spreadSelect) return;
   newStaticPrice = Number(newStaticPrice);
+  console.log(newStaticPrice);
   let displayedPrice =
-   (((Number(diameter.value) * Number(diameter.value)) / 100) + newStaticPrice / 100);
-   displayedPrice = (Math.round((displayedPrice + newStaticPrice) * 100) / 100).toFixed(1);
+    Number(diameter.value / 100) * Number(diameter.value / 100);
+  console.log("DPB", displayedPrice);
+  displayedPrice *= newStaticPrice;
+
+  console.log("DP", displayedPrice);
+  displayedPrice = Math.round(displayedPrice * 100) / 100;
   const priceSpan = roundPlateCalc.querySelector(".cenaop");
   if (!priceSpan) return;
   priceSpan.innerHTML = `${displayedPrice + Number(spreadSelect.value)}€`;
 };
 if (submitBtnRp) submitBtnRp.addEventListener("click", getPrice);
-
-
-
-
-
-
-
-
-
-
-
-
 
 // {
 //     const duzina = document.querySelector(".duzina");
