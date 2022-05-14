@@ -24,16 +24,23 @@ const getPricePP = async () => {
   if (displayedPrice >= 4 && displayedPrice < 5) lengthNumber = 4;
   if (displayedPrice == 5) lengthNumber = 5;
   if (displayedPrice > 5) lengthNumber = -1;
-  console.log(displayedPrice);
+
+  if (spreadSelectPP.value > 0) {
+    displayedPrice *= Number(thicknesPP / 10);
+    console.log(displayedPrice);
+  }
   console.log("LenghtNumber", lengthNumber);
   let newStaticPricePP = pricesPP[lengthNumber][thicknesPP][classSelectPP];
   newStaticPricePP = Number(newStaticPricePP);
   console.log("nsp", newStaticPricePP);
   displayedPrice *= newStaticPricePP;
+  //   displayedPrice += Number(spreadSelectPP.value);
   console.log(displayedPrice);
   displayedPrice = Math.round(displayedPrice * 100) / 100;
   const priceSpan = ppCalc.querySelector(".cenaPP");
   if (!priceSpan) return;
+
+  console.log(displayedPrice);
   priceSpan.innerHTML = `${displayedPrice + Number(spreadSelectPP.value)}€`;
 };
 if (ppSumbitButton) ppSumbitButton.addEventListener("click", getPricePP);
