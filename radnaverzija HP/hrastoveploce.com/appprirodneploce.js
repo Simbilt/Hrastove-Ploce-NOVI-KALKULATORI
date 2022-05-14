@@ -13,18 +13,28 @@ const getPricePP = async () => {
   const thicknesPP = ppCalc.querySelector(".thicknessPP").value;
   const classSelectPP = ppCalc.querySelector(".classSelectPP").value;
   const spreadSelectPP = ppCalc.querySelector(".spreadSelectPP");
-  let newStaticPricePP = pricesPP[thicknesPP][classSelectPP];
   if (!widthPP && !lengthPP && !classSelectPP && !spreadSelectPP) return;
+  let displayedPrice =
+    Number(widthPP.value / 100) * Number(lengthPP.value / 100);
+
+  let lengthNumber;
+  if (displayedPrice > 0 && displayedPrice < 2) lengthNumber = 1;
+  if (displayedPrice >= 2 && displayedPrice < 3) lengthNumber = 2;
+  if (displayedPrice >= 3 && displayedPrice < 4) lengthNumber = 3;
+  if (displayedPrice >= 4 && displayedPrice < 5) lengthNumber = 4;
+  if (displayedPrice == 5) lengthNumber = 5;
+  if (displayedPrice > 5) lengthNumber = -1;
+  console.log(displayedPrice);
+  console.log("LenghtNumber", lengthNumber);
+  let newStaticPricePP = pricesPP[lengthNumber][thicknesPP][classSelectPP];
   newStaticPricePP = Number(newStaticPricePP);
-  let displayedPricePP =
-    Number(widthPP.value / 100) *
-    Number(lengthPP.value / 100) *
-    newStaticPricePP;
-  console.log(displayedPricePP);
-  displayedPricePP = Math.round(displayedPricePP * 100) / 100;
+  console.log("nsp", newStaticPricePP);
+  displayedPrice *= newStaticPricePP;
+  console.log(displayedPrice);
+  displayedPrice = Math.round(displayedPrice * 100) / 100;
   const priceSpan = ppCalc.querySelector(".cenaPP");
   if (!priceSpan) return;
-  priceSpan.innerHTML = `${displayedPricePP + Number(spreadSelectPP.value)}€`;
+  priceSpan.innerHTML = `${displayedPrice + Number(spreadSelectPP.value)}€`;
 };
 if (ppSumbitButton) ppSumbitButton.addEventListener("click", getPricePP);
 
